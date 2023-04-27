@@ -1,4 +1,4 @@
-void Dijkstra(const Graph& graph, vector<ll>& distances, int startIndex){
+void Dijkstra(const Graph& graph, vector<long long>& distances, int startIndex){
 	priority_queue<Pair, vector<Pair>, greater<Pair>> q;
 	q.emplace((distances[startIndex] = 0), startIndex);
 	while (!q.empty()){
