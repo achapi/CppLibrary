@@ -1,16 +1,22 @@
-void Dijkstra(const Graph& graph, vector<long long>& distances, int startIndex){
-	priority_queue<Pair, vector<Pair>, greater<Pair>> q;
-	q.emplace((distances[startIndex] = 0), startIndex);
+vector<long long> Dijkstra(vector<vector<pair<int, long long>>> &G, int s){
+	vector<long long> D(G.size(), 1e18);
+	D[s] = 0;
+	priority_queue<pair<int, long long>, vector<pair<int, long long>>, greater<pair<int, long long>>> q;
+	q.push(make_pair(0, s));
 	while (!q.empty()){
-		const long long distance = q.top().first;
-		const int from = q.top().second;
+		long long d = q.top().first;
+		int u = q.top().second;
 		q.pop();
-		if (distances[from] < distance)continue;
-		for (const auto& edge : graph[from]){
-			const long long d = (distances[from] + edge.cost);
-			if (d < distances[edge.to]){
-				q.emplace((distances[edge.to] = d), edge.to);
+		if (D[u] < d){
+			continue;
+		}
+		for (auto [v, c] : G[u]){
+			d = D[u] + c;
+			if (d < D[v]){
+				D[v] = d;
+				q.push(make_pair(d, v));
 			}
 		}
 	}
+	return D;
 }
