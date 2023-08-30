@@ -1,7 +1,7 @@
 vector<long long> Dijkstra(vector<vector<pair<int, long long>>> &G, int s){
 	vector<long long> D(G.size(), 1e18);
 	D[s] = 0;
-	priority_queue<pair<int, long long>, vector<pair<int, long long>>, greater<pair<int, long long>>> q;
+	priority_queue<pair<long long, int>, vector<pair<long long, int>>, greater<pair<long long, int>>> q;
 	q.push(make_pair(0, s));
 	while (!q.empty()){
 		long long d = q.top().first;
