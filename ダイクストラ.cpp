@@ -1,10 +1,10 @@
 template<class T> vector<T> Dijkstra(vector<vector<pair<int, T>>> &G, int s){
 	vector<T> D(G.size(), 1e18);
 	D[s] = 0;
-	priority_queue<pair<int, T>, vector<pair<int, T>>, greater<pair<int, T>>> q;
+	priority_queue<pair<T, int>, vector<pair<T, int>>, greater<pair<T, int>>> q;
 	q.push(make_pair(0, s));
 	while (!q.empty()){
-		auto [u, d] = q.top();
+		auto [d, u] = q.top();
 		q.pop();
 		if (D[u] < d){
 			continue;
@@ -13,7 +13,7 @@ template<class T> vector<T> Dijkstra(vector<vector<pair<int, T>>> &G, int s){
 			d = D[u] + c;
 			if (d < D[v]){
 				D[v] = d;
-				q.push(make_pair(v, d));
+				q.push(make_pair(d, v));
 			}
 		}
 	}
