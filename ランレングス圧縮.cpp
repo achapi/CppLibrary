@@ -1,12 +1,12 @@
-vector<pair<int, int>> RLE(string A){
-	int N = A.size();
-	vector<pair<int, int>> ret;
+vector<pair<char, int>> RLE(string S){
+	int N = S.size();
+	vector<pair<char, int>> ret;
 	for (int l = 0; l < N;){
 		int r = l + 1;
-		while (r < N and A[l] == A[r]){
+		while (r < N and S[l] == S[r]){
 			r++;
 		};
-		ret.push_back({A[l], r - l});
+		ret.push_back(make_pair(S[l], r - l));
 		l = r;
 	}
 	return ret;
