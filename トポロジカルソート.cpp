@@ -1,21 +1,16 @@
-vector<int>TopologicalSort(const vector<vector<int>>& graph){
-	vector<int> indegrees(graph.size());
-	for(const auto& v:graph){
-		for(const auto& to:v)indegrees[to]++;
+template<typename T> vector<T> TopologicalSort(const vector<vector<T>>& g, bool rev = false) {
+	T n = g.size();
+	vector<int> in(n);
+	for (auto& v : g) for (T to : v) in[to]++;
+	priority_queue<T> p1;
+	priority_queue<T, vector<T>, greater<T>> p2;
+	auto* q = rev ? (priority_queue<T>*)&p1 : (priority_queue<T>*)&p2;
+	for (T i = 0; i < n; i++) if (!in[i]) q->push(i);
+	vector<T> r;
+	while (!q->empty()) {
+		T v = q->top(); q->pop();
+		r.push_back(v);
+		for (T to : g[v]) if (--in[to] == 0) q->push(to);
 	}
-	//辞書順最大 → greater<int>を消す
-	priority_queue<int,vector<int>,greater<int>>pq;
-	for(int i=0;i<(int)graph.size();i++){
-		if(indegrees[i]==0)pq.push(i);
-	}
-	vector<int> result;
-	while (!pq.empty()){
-		const int from=pq.top();pq.pop();
-		result.push_back(from);
-		for (const auto& to:graph[from]){
-			if(--indegrees[to]==0)pq.push(to);
-		}
-	}
-	if(result.size()!=graph.size())return{};
-	return result;
+	return (int) r.size() == n ? r : vector<T>();
 }
