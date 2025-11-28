@@ -1,28 +1,23 @@
-vector<int> TopologicalSort(const vector<vector<int>>& G, int k = -1){
-	int N = G.size();
-	vector<int> in(N);
-	for (int i = 0; i < N; i++) {
-		for (int to : G[i]) {
-			in[to]++;
+vector<int> Zalgorithm(string S){
+	vector<int> V(S.size());
+	V[0] = S.size();
+	int i = 1, j = 0;
+	while (i < (int) S.size()){
+		while (i + j < (int) S.size() and S[j] == S[i + j]){
+			j++;
 		}
-	}
-	priority_queue<int> pq;
-	for (int i = 0; i < N; i++) {
-		if (in[i] == 0) {
-			pq.push(i * k);
+		V[i] = j;
+		if (j == 0){
+			i++;
+			continue;
 		}
-	}
-	vector<int> r;
-	while (!pq.empty()) {
-		int v = pq.top();
-		pq.pop();
-		r.push_back(v * k);
-		for (int to : G[v * k]) {
-			in[to]--;
-			if (in[to] == 0) {
-				pq.push(to * k);
-			}
+		int k = 1;
+		while (i + k < (int) S.size() and k + V[k] < j){
+			V[i + k] = V[k];
+			k++;
 		}
+		i += k;
+		j -= k;
 	}
-	return (int) r.size() == N ? r : vector<int>();
+	return V;
 }
