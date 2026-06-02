@@ -27,8 +27,38 @@ struct Wavelet_Matrix{
 			}
 		}
 	}
+	int rank(int L, int R, int x){
+		assert(0 <= L and L < R and R <= N);
+		for(int h = H - 1; h >= 0; h--){
+			if((x >> h) & 1){
+				L = N - dat[h][N] + dat[h][L];
+				R = N - dat[h][N] + dat[h][R];
+			} else {
+				L -= dat[h][L];
+				R -= dat[h][R];
+			}
+		}
+		return R - L;
+	}
+	int count_less(int L, int R, int x){
+		assert(0 <= L and L < R and R <= N);
+		int res = 0;
+		for(int h = H - 1; h >= 0; h--){
+			int l0 = L - dat[h][L], r0 = R - dat[h][R], l1 = N - dat[h][N] + dat[h][L], r1 = N - dat[h][N] + dat[h][R];
+			if ((x >> h) & 1){
+				res += r0 - l0;
+				L = l1;
+				R = r1;
+			} else {
+				L = l0;
+				R = r0;
+			}
+		}
+		return res;
+	}
 	int kth_smallest(int L, int R, int k){
-		assert(0 <= L and L < R and R <= N and 0 <= k and k < R - L);
+		assert(0 <= L and L < R and R <= N);
+		assert(0 <= k and k < R - L);
 		return kth_smallest_rec(H, L, R, k);
 	}
 	int kth_smallest_rec(int h, int l, int r, int k){
