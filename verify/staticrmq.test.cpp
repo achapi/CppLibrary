@@ -1,5 +1,5 @@
 #include <bits/stdc++.h>
-#include "データ構造/スパーステーブル.hpp"
+#include "data_structure/sparse_table.hpp"
 using namespace std;
 #define PROBLEM "https://judge.yosupo.jp/problem/staticrmq"
 int op(int a, int b) { return min(a, b); }

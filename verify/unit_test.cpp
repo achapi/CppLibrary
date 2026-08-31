@@ -1,18 +1,18 @@
 #include <bits/stdc++.h>
 #include <atcoder/all>
-#include "データ構造/双対セグメント木.hpp"
-#include "データ構造/モー法.hpp"
-#include "データ構造/重み付き素集合データ構造.hpp"
-#include "幾何/幾何.hpp"
-#include "グラフ/橋と関節点.hpp"
-#include "グラフ/トポロジカルソート.hpp"
-#include "数学/組合せ.hpp"
-#include "数学/行列.hpp"
-#include "数学/整数論.hpp"
-#include "文字列/ローリングハッシュ.hpp"
-#include "文字列/文字列アルゴリズム.hpp"
-#include "木/重軽分解.hpp"
-#include "木/木の直径.hpp"
+#include "data_structure/dual_segment_tree.hpp"
+#include "data_structure/mo.hpp"
+#include "data_structure/weighted_union_find.hpp"
+#include "geometry/geometry.hpp"
+#include "graph/lowlink.hpp"
+#include "graph/topological_sort.hpp"
+#include "math/combinatorics.hpp"
+#include "math/matrix.hpp"
+#include "math/number_theory.hpp"
+#include "string/rolling_hash.hpp"
+#include "string/string_algorithms.hpp"
+#include "tree/heavy_light_decomposition.hpp"
+#include "tree/tree_diameter.hpp"
 
 long long compose(long long f, long long g) { return f + g; }
 long long identity() { return 0; }
