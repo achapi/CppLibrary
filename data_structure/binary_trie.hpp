@@ -1,8 +1,8 @@
 #pragma once
 
 template <class UInt = unsigned, int B = 30> struct binary_trie {
-    struct node { std::array<int, 2> ch{-1, -1}; int count = 0; };
-    std::vector<node> t{{}};
+    struct node { array<int, 2> ch{-1, -1}; int count = 0; };
+    vector<node> t{{}};
     void add(UInt x, int delta = 1) {
         int v = 0; t[v].count += delta;
         for (int b = B - 1; b >= 0; --b) {

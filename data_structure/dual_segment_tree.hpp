@@ -2,7 +2,7 @@
 
 template <class F, F (*composition)(F, F), F (*id)()> struct dual_segtree {
     int size, log;
-    std::vector<F> lazy;
+    vector<F> lazy;
     explicit dual_segtree(int n) : size(1), log(0) {
         while (size < n) size <<= 1, ++log;
         lazy.assign(2 * size, id());

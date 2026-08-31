@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
 #include <atcoder/all>
+using namespace std;
 #include "data_structure/binary_trie.hpp"
 #include "data_structure/dual_segment_tree.hpp"
 #include "data_structure/mo.hpp"

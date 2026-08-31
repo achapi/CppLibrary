@@ -2,10 +2,10 @@
 
 struct lowlink {
     int n, timer = 0;
-    std::vector<std::vector<std::pair<int, int>>> g;
-    std::vector<int> ord, low;
-    std::vector<int> articulation;
-    std::vector<int> bridges;
+    vector<vector<pair<int, int>>> g;
+    vector<int> ord, low;
+    vector<int> articulation;
+    vector<int> bridges;
     explicit lowlink(int n) : n(n), g(n), ord(n, -1), low(n) {}
     void add_edge(int u, int v, int id) { g[u].push_back({v, id}); g[v].push_back({u, id}); }
     void dfs(int u, int pe = -1) {
@@ -13,10 +13,10 @@ struct lowlink {
         for (auto [v, id] : g[u]) {
             if (id == pe) continue;
             if (ord[v] == -1) {
-                ++child; dfs(v, id); low[u] = std::min(low[u], low[v]);
+                ++child; dfs(v, id); low[u] = min(low[u], low[v]);
                 if (pe != -1 && ord[u] <= low[v]) art = true;
                 if (ord[u] < low[v]) bridges.push_back(id);
-            } else low[u] = std::min(low[u], ord[v]);
+            } else low[u] = min(low[u], ord[v]);
         }
         if (pe == -1 && child >= 2) art = true;
         if (art) articulation.push_back(u);

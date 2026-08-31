@@ -1,9 +1,9 @@
 #pragma once
 
 template <class T> struct weighted_union_find {
-    std::vector<int> p, sz;
-    std::vector<T> w; // potential(x) - potential(parent(x))
-    explicit weighted_union_find(int n) : p(n), sz(n, 1), w(n, T{}) { std::iota(p.begin(), p.end(), 0); }
+    vector<int> p, sz;
+    vector<T> w; // potential(x) - potential(parent(x))
+    explicit weighted_union_find(int n) : p(n), sz(n, 1), w(n, T{}) { iota(p.begin(), p.end(), 0); }
     int leader(int x) {
         if (p[x] == x) return x;
         int q = p[x];
@@ -18,12 +18,12 @@ template <class T> struct weighted_union_find {
         d += potential(x) - potential(y);
         x = leader(x), y = leader(y);
         if (x == y) return d == T{};
-        if (sz[x] < sz[y]) { std::swap(x, y); d = -d; }
+        if (sz[x] < sz[y]) { swap(x, y); d = -d; }
         p[y] = x; sz[x] += sz[y]; w[y] = d;
         return true;
     }
-    std::optional<T> diff(int x, int y) {
-        if (!same(x, y)) return std::nullopt;
+    optional<T> diff(int x, int y) {
+        if (!same(x, y)) return nullopt;
         return potential(y) - potential(x);
     }
 };
