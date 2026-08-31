@@ -32,6 +32,7 @@ fi
 root_dir=$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)
 work_dir="$root_dir/.yosupo"
 problems_dir="$work_dir/library-checker-problems"
+acl_dir="$work_dir/ac-library"
 venv_dir="$work_dir/venv"
 build_dir="$work_dir/build/$problem"
 
@@ -40,6 +41,11 @@ mkdir -p "$work_dir" "$build_dir"
 if [[ ! -d "$problems_dir/.git" ]]; then
   echo "==> cloning library-checker-problems"
   git clone --depth 1 https://github.com/yosupo06/library-checker-problems.git "$problems_dir"
+fi
+
+if [[ ! -d "$acl_dir/.git" ]]; then
+  echo "==> cloning ac-library"
+  git clone --depth 1 https://github.com/atcoder/ac-library.git "$acl_dir"
 fi
 
 if [[ ! -x "$venv_dir/bin/python" ]]; then
@@ -63,7 +69,7 @@ fi
 problem_dir=${info_file%/info.toml}
 
 echo "==> compiling: $source_file"
-g++ -std=gnu++20 -O2 -pipe -Wall -Wextra "$source_file" -o "$build_dir/main"
+g++ -std=gnu++20 -O2 -pipe -Wall -Wextra -I"$root_dir" -I"$acl_dir" "$source_file" -o "$build_dir/main"
 
 checker="$problem_dir/checker"
 if [[ ! -x "$checker" ]]; then

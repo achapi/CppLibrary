@@ -1,0 +1,21 @@
+#include <bits/stdc++.h>
+#include <atcoder/all>
+#include "データ構造/二進トライ木.hpp"
+#include "データ構造/双対セグメント木.hpp"
+#include "データ構造/モー法.hpp"
+#include "データ構造/スパーステーブル.hpp"
+#include "データ構造/重み付き素集合データ構造.hpp"
+#include "幾何/幾何.hpp"
+#include "グラフ/橋と関節点.hpp"
+#include "グラフ/最小全域木.hpp"
+#include "グラフ/最短経路.hpp"
+#include "グラフ/トポロジカルソート.hpp"
+#include "数学/組合せ.hpp"
+#include "数学/行列.hpp"
+#include "数学/整数論.hpp"
+#include "文字列/ローリングハッシュ.hpp"
+#include "文字列/文字列アルゴリズム.hpp"
+#include "木/重軽分解.hpp"
+#include "木/最小共通祖先.hpp"
+#include "木/木の直径.hpp"
+int main() {}

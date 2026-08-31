@@ -1,1 +1,5 @@
 .yosupo/
+__pycache__/
+.venv/
+.verify-helper/cache/
+.verify-helper/markdown/

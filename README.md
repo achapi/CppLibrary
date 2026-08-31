@@ -3,31 +3,54 @@
 
 ## 構成
 
-- `data_structure/`: データ構造・クエリ処理
-- `graph/`: グラフ・木
-- `string/`: 文字列アルゴリズム
-- `math/`: 数学・数論・代数
-- `geometry/`: 幾何
-- `utility/`: 全探索・小技
-- `template/`: 提出用テンプレート
+- `データ構造/`: データ構造・クエリ処理
+- `グラフ/`: グラフ
+- `木/`: 木
+- `文字列/`: 文字列アルゴリズム
+- `数学/`: 数学・数論・代数
+- `幾何/`: 幾何
+- `小技/`: 全探索・小技
+- `テンプレート/`: 提出用テンプレート
 - `tools/`: 開発・検証用ツール
 
-## Library Checkerをローカルで実行
+## verification-helperで検証
 
-`g++`、`git`、`python3`、Pythonの`venv`が必要です。初回実行時に公式の
-`library-checker-problems`と依存パッケージを`.yosupo/`へ取得します。
-
-```sh
-tools/yosupo-test <問題名> <提出コード.cpp> [1ケースの制限秒数]
-```
-
-例:
+検証には
+[`online-judge-tools/verification-helper`](https://github.com/online-judge-tools/verification-helper)
+を使用します。
 
 ```sh
-tools/yosupo-test unionfind test/unionfind.cpp
-tools/yosupo-test convolution_mod test/convolution_mod.cpp 10
+python3 -m venv .venv
+. .venv/bin/activate
+pip install -r requirements.txt
+oj-verify run
 ```
 
-問題名はURL末尾の文字列です。たとえば
-`https://judge.yosupo.jp/problem/unionfind`なら`unionfind`です。
-テストケースや生成物を取り直したい場合は`.yosupo/`を削除してください。
+`main` への push と pull request では、GitHub Actions が同じ検証を実行します。
+
+## 頻出ライブラリ
+
+ACLにある `dsu`、Fenwick Tree、Segment Tree、Lazy Segment Tree、最大流、
+最小費用流、SCC、Two-SAT、modint、畳み込み、suffix arrayはACLを直接使います。
+このリポジトリではACLにない、または補助が必要な次の機能を提供します。
+
+| 分類 | ヘッダ | 内容 |
+|---|---|---|
+| データ構造 | `重み付き素集合データ構造.hpp` | ポテンシャル付きUnion-Find |
+|  | `スパーステーブル.hpp` | 冪等演算の静的区間取得 |
+|  | `双対セグメント木.hpp` | 区間作用・一点取得 |
+|  | `二進トライ木.hpp` | 集合のXOR最小値 |
+|  | `モー法.hpp` | Mo's algorithm |
+| グラフ | `最短経路.hpp` | Dijkstra、Bellman–Ford、Warshall–Floyd、経路復元 |
+|  | `橋と関節点.hpp` | 関節点・橋 |
+|  | `最小全域木.hpp` | Kruskal法 |
+|  | `トポロジカルソート.hpp` | 辞書順最小トポロジカルソート |
+| 木 | `最小共通祖先.hpp` | ダブリングLCA・距離・祖先ジャンプ |
+|  | `重軽分解.hpp` | パス・部分木の区間分解 |
+|  | `木の直径.hpp` | 重み付き木の直径と経路 |
+| 文字列 | `文字列アルゴリズム.hpp` | Z、KMP前処理、Manacher |
+|  | `ローリングハッシュ.hpp` | mod $2^{61}-1$ Rolling Hash |
+| 数学 | `整数論.hpp` | Miller–Rabin、Pollard's rho、線形篩、floor sum |
+|  | `組合せ.hpp` | 階乗、二項係数、順列 |
+|  | `行列.hpp` | 積、累乗、行列式 |
+| 幾何 | `幾何.hpp` | 点・外積・交差判定・凸包 |

@@ -1,0 +1,2 @@
+setuptools<81
+online-judge-verify-helper==5.6.0

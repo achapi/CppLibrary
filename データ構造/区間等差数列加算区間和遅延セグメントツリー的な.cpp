@@ -1,5 +1,3 @@
-#include <bits/stdc++.h>
-#include <atcoder/all>
 using mint = atcoder::modint998244353;
 using namespace std;
 struct S{

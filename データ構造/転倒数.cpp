@@ -1,4 +1,3 @@
-#include <atcoder/fenwicktree>
 template<typename T>
 vector<int> inversion_count(const vector<T>& a) {
 	int n = a.size();
