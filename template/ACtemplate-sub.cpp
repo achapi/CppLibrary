@@ -45,3 +45,5 @@ int main() {
 }
 // python3 expander.py AC.cpp
 // g++ AC.cpp -Wall -Wextra -O2 -std=c++20 -I . -DLOCAL
+// -D_GLIBCXX_DEBUG
+// ↑せぐふぉしたらこれ
