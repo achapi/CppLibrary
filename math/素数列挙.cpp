@@ -1,4 +1,4 @@
-vector<long long> eratosthenes(){
+vector<int> eratosthenes(){
 	int MAX = 2000000;
 	vector<int> e(MAX);
 	for (int i = 2; i < MAX; i++){
@@ -6,7 +6,7 @@ vector<long long> eratosthenes(){
 			e[j]++;
 		}
 	}
-	vector<long long> p;
+	vector<int> p;
 	for (int i = 2; i < MAX; i++){
 		if (e[i] == 1){
 			p.push_back(i);
